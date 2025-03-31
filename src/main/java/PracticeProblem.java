@@ -51,7 +51,7 @@ public class PracticeProblem {
 		int low=0;
 		int high = arr.length-1;
 		int count = 1;
-		int countAg=1;
+		int countAg=0;
 		while (low<=high){
 			int mid = (low+high)/2;
 
@@ -59,8 +59,13 @@ public class PracticeProblem {
 				out[1] = count;
 				low = arr.length;
 			}
-			else {
+			else if (text.compareTo(arr[mid])<0){
+				high = mid-1;
+				count ++;
+			}
+			else if (text.compareTo(arr[mid])>0){
 				low = mid+1;
+				count ++;
 			}
 			if (low==high){
 				out[1] = count;
@@ -70,14 +75,15 @@ public class PracticeProblem {
 
 		for (int i =0; i<arr.length; i++){
 			if (arr[i].equals(text)){
-				out[0]=countAg;
-				i = arr.length;
+				
+				out[0]=countAg+1;
+				i = arr.length+100;
 			}
 			else {
 				countAg++;
 			}
 			if(i==arr.length-1){
-				out[0]=countAg;
+				out[0]=i+1;
 			}
 		}
 		return out;
